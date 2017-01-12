@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="lib" path="tool/Burn_Preflight.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/><classpathentry kind="lib"
+		path="../../../../app/bin">
+</classpathentry>
+	<classpathentry kind="lib" path="../../../../arduino-core/bin"></classpathentry>
+</classpath>

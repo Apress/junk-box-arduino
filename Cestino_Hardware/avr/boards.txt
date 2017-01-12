@@ -1,0 +1,24 @@
+##############################################################
+cestino.name=Cestino 1284p 20MHz using Optiboot
+cestino.upload.protocol=arduino
+cestino.upload.maximum_size=130048
+cestino.upload.speed=115200
+cestino.upload.tool=arduino:avrdude
+cestino.bootloader.low_fuses=0xe0
+cestino.bootloader.high_fuses=0xde
+cestino.bootloader.extended_fuses=0xfc
+#cestino.bootloader.path=optiboot
+cestino.bootloader.file=optiboot/optiboot_cestino1284p.hex
+cestino.bootloader.unlock_bits=0x3F
+cestino.bootloader.lock_bits=0x0F
+cestino.bootloader.tool=arduino:avrdude
+cestino.build.board=CESTINO
+cestino.build.mcu=atmega1284p
+cestino.build.f_cpu=20000000L
+cestino.build.core=arduino:arduino
+cestino.build.libraries=arduino:libraries
+#cestino.build.core=standard
+cestino.build.variant=cestino
+#cestino.build
+
+##############################################################

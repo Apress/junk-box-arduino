@@ -1,0 +1,94 @@
+/* -*- mode: java; c-basic-offset: 2; indent-tabs-mode: nil -*- */
+
+/*-------------------------------------------------------------------
+Burn_Preflight.java 
+Part of the Cestino Project
+Copyright (c) 2015
+James R. Strickland
+---------------------------------------------------------------------
+Sometimes Burn Bootloader will partially succeed, leaving the clock
+fuses in an unknown state and the ATmega unable to start.
+ 
+Since the Cestino project requires using Arduino as ISP (which can be
+dodgy), and burning bootloaders of people who may not have a proper
+ISP or EPROM burner to un-screw the fuses, we use AVRdude to read the
+MPU status and fuse data in, and make sure it's valid before burning
+the bootloader.
+
+This tool is hacked together from a skeleton I derived from the Mangler
+tool, and from Uploader.java, from the Arduino core itself. 
+---------------------------------------------------------------------
+License: GPL version 2
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software Foundation,
+Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+---------------------------------------------------------------------*/
+
+package com.burn_preflight;
+
+//These imports are required for our tool to show up in the tools menu.
+import processing.app.Editor;
+import processing.app.tools.Tool;
+
+//These imports are required for calling AVRDude and telling it what we want.
+import cc.arduino.packages.Uploader;
+import cc.arduino.packages.uploaders.SerialUploader;
+import processing.app.helpers.PreferencesMapException;
+import processing.app.debug.RunnerException;
+
+import processing.app.helpers.ProcessUtils;
+import processing.app.helpers.StringUtils;
+
+
+import java.io.File;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
+//import static processing.app.I18n._;
+
+
+/**
+ * Example Tools menu entry.
+ */
+public class Burn_Preflight implements Tool {
+  Editor editor;
+
+
+  public void init(Editor editor) {
+    this.editor = editor;
+  }
+
+
+  public String getMenuTitle() {
+    return "Bootloader Burn Preflight Check";
+  }
+
+
+  public void run() {
+        System.out.println("Hello from Burn_Preflight");
+        try {
+          Uploader uploader = new SerialUploader();
+          if (uploader.burnBootloader()) {
+          } else {
+            // error message will already be visible
+          }
+        } catch (PreferencesMapException e) {
+
+        } catch (RunnerException e) {
+        } catch (Exception e) {
+        }
+  }
+ 
+}

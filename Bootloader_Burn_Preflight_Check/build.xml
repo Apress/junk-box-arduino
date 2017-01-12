@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<project name="Burn_Preflight" default="build">
+<property name="arduino-app-bin" location= "../../../../app/bin" />
+<property name="arduino-core-bin" location= "../../../../arduino-core/bin/" />
+  <target name="clean" description="Clean the build directories">
+    <delete dir="bin" />
+    <delete file="tool/Burn_Preflight.jar" />
+  </target>
+
+  <target name="compile" description="Compile sources">   
+    <mkdir dir="bin" />
+    <javac source="1.8" target="1.8"
+	   srcdir="src" 
+	   destdir="bin" 
+	   encoding="UTF-8"
+	   includeAntRuntime="false"
+	   classpath="${arduino-app-bin};${arduino-core-bin}" 
+	   nowarn="true" >
+    </javac>
+  </target>
+
+  <target name="build" depends="compile" description="Build Burn_Preflight">
+    <mkdir dir="tool" />
+    <jar basedir="bin" destfile="tool/Burn_Preflight.jar" />
+  </target>
+</project>
